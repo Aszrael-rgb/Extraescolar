@@ -1,27 +1,29 @@
-name: Integración Continua (CI) - React Vite
+name: CI React Vite
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 1. Descargar el código del repositorio
+      - name: Descargar repo
         uses: actions/checkout@v4
 
-      - name: 2. Configurar Node.js
+      - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
 
-      - name: 3. Instalar dependencias
+      - name: Instalar dependencias
         run: npm install
 
-      - name: 4. Ejecutar empaquetado y comprobación
+      - name: Compilar
         run: npm run build
